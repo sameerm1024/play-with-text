@@ -54,7 +54,7 @@ export const Textbox = () => {
     return (
     <>
         <div className='container mx-auto my-4 p-4'>
-            <h2 className='text-2xl font-bold mb-4'>Enter the text to analyze below</h2>
+            <h2 className='text-2xl font-bold mb-4'>Enter the text below</h2>
             <textarea className='w-full h-48 p-2 border border-gray-300 rounded' 
             placeholder='Type or paste your text here...'
             value={text}
@@ -70,7 +70,7 @@ export const Textbox = () => {
             onClick={textToSpeech}>Text to Speech</button>
             <button type='button' className='bg-blue-500 rounded-xl text-white p-2 mx-2 mt-2 cursor-pointer' 
             onClick={revertChanges}
-            disabled={history.length===0}>Reverse the Changes</button>
+            disabled={history.length===0}>Reverse the Change</button>
         </div>
         <div className='container mx-auto my-4 p-4'>
             <p>{words} Words and {text.length} Characters</p>
