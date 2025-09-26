@@ -14,41 +14,48 @@ export const Textbox = () => {
             stop, // Function to stop the speech or remove it from queue
         } = useSpeech({text});
 
-    const updateHistoryAndText = (newText) => {
+    const updateHistory = (newText) => {
         setHistory([...history, newText]);
-        setText(newText);
     }
     const handleOnChange = (e) =>{
-        setText(e.target.value)       
+        setText(e.target.value)    
     }
 
     const toUpper = () =>{
+        updateHistory(text);   
         let newText = text.toUpperCase();
-        updateHistoryAndText(newText);    
+        setText(newText); 
     }
 
     const toLower = () =>{
+        updateHistory(text);
         let newText = text.toLowerCase();
-        updateHistoryAndText(newText);    
+        setText(newText);    
     }
     const replaceWord = () =>{
         alert("Enter the word to be replaced and the new word in the prompt boxes")
         let word1 = prompt("Enter the word to be replaced")
         let word2 = prompt("Enter the new word")
-        let newText = text.replaceAll(word1,word2);
-        updateHistoryAndText(newText);
+        if(word1 && word2){
+            updateHistory(text);
+            let newText = text.replaceAll(word1,word2);
+            setText(newText);
+        }
     }
     const textToSpeech = () =>{
         start();
     }
 
     const revertChanges = () =>{
-        let lasttext = history[history.length-1];
-        setText(lasttext);
-        let newHistory = history.slice(0,history.length-1);
-        setHistory(newHistory);
+        if(history.length>0){
+            let lasttext = history[history.length-1];
+            setText(lasttext);
+            let newHistory = history.slice(0,history.length-1);
+            setHistory(newHistory);
+        }
     }  
-    console.log(history);  
+    console.log(history);
+
     const words = text.length===0?0:(text.trim().length === 0 ? 0 : text.trim().split(/\s+/).length) 
 
     return (
