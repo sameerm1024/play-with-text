@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { useSpeech } from 'react-text-to-speech';
 
-export const Textbox = () => {
+export const Textbox = (props) => {
     const [text, setText] = useState('')
     //storing the history in state to avoid re rendering issues
     const [history, setHistory] = useState([])
@@ -59,10 +59,11 @@ export const Textbox = () => {
     const words = text.length===0?0:(text.trim().length === 0 ? 0 : text.trim().split(/\s+/).length) 
 
     return (
-    <>
-        <div className='container mx-auto my-4 p-4'>
+    <div className={`min-h-screen ${props.dark?"bg-gray-800 text-white":"bg-white text-black"}`}>
+        <div className={`container mx-auto py-4 p-4 ${props.dark?"bg-gray-800 text-white":"bg-white text-black"}`}>
             <h2 className='text-2xl font-bold mb-4'>Enter the text below</h2>
-            <textarea className='w-full h-48 p-2 border border-gray-300 rounded' 
+            <textarea className={`w-full h-48 p-2 border border-gray-300 rounded
+            ${props.dark?"bg-gray-700 text-white placeholder-gray-400":"bg-white text-black placeholder-gray-500"}`} 
             placeholder='Type or paste your text here...'
             value={text}
             onChange={handleOnChange}>
@@ -85,7 +86,7 @@ export const Textbox = () => {
             <h3 className='text-xl font-bold mt-4'>Preview</h3>
             <p>{text.length>0?text:"Nothing to preview!"}</p>
         </div>
-    </>
+    </div>
   )
 }
 

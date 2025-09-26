@@ -11,9 +11,9 @@ const Navbar = (props) => {
             ${props.dark?"bg-gray-900 text-white":"bg-gray-200 text-black"}`}>
             <div className='font-extrabold inline-block text-3xl'>{props.name}</div>
             <div>          
-                <button className='bg-blue-500 rounded p-2 text-white cursor-pointer
-                 hover:border-black hover:border-2' onClick={toggleDarkMode} type='button'>
-                    {props.dark?"Light Mode": "Dark Mode"}
+                <button className={`rounded p-2 cursor-pointer hover:border-2 ${props.dark?
+                "bg-white text-black hover:border-black" : "bg-black text-white hover:border-white"}`} onClick={toggleDarkMode} type='button'>
+                {props.dark?"Light Mode": "Dark Mode"}
                 </button>
                 <li className='list-none inline-block mx-3 items-center text-xl'>
                     <a href="/">Home</a>
