@@ -60,6 +60,10 @@ export const Textbox = (props) => {
     }
   };
 
+  const copyMessage = () =>{
+    navigator.clipboard.writeText(text)
+    setAlertMessage("Text copied successfully")
+  }
   const setAlertMessage = (message) =>{
     setAlert(message)
     setTimeout(() =>{
@@ -82,13 +86,14 @@ export const Textbox = (props) => {
         props.dark ? "bg-gray-800 text-white" : "bg-white text-black"
       }`}
     >
-      {alert &&<> <div
-        className={`p-4 mb-4 text-sm rounded-lg ${props.dark?"text-green-800  bg-green-200":" bg-gray-800 text-green-400"}`}
-        role="alert"
-      >
+      <div className="h-8" >
+        {alert &&<> <div
+        className={`p-4 text-sm rounded-lg absolute w-full ${props.dark?"text-green-800  bg-green-200":" bg-gray-800 text-green-400"}`}
+        role="alert">
         <span className="font-medium">Success !</span> {alert}
-      </div>
+        </div>
       </>}
+      </div>
      
       <div
         className={`container mx-auto py-4 p-4 ${
@@ -111,6 +116,7 @@ export const Textbox = (props) => {
           type="button"
           className="bg-blue-500 rounded-xl text-white p-2 mt-2 cursor-pointer"
           onClick={toUpper}
+          disabled={text.length === 0}
         >
           Upper Case
         </button>
@@ -118,6 +124,7 @@ export const Textbox = (props) => {
           type="button"
           className="bg-blue-500 rounded-xl text-white p-2 mx-2 mt-2 cursor-pointer"
           onClick={toLower}
+          disabled={text.length === 0}
         >
           Lower Case
         </button>
@@ -125,6 +132,7 @@ export const Textbox = (props) => {
           type="button"
           className="bg-blue-500 rounded-xl text-white p-2 mx-2 mt-2 cursor-pointer"
           onClick={replaceWord}
+          disabled={text.length === 0}
         >
           Replace Words
         </button>
@@ -132,14 +140,23 @@ export const Textbox = (props) => {
           type="button"
           className="bg-blue-500 rounded-xl text-white p-2 mx-2 mt-2 cursor-pointer"
           onClick={textToSpeech}
+          disabled={text.length === 0}
         >
           Text to Speech
+        </button>
+         <button
+          type="button"
+          className="bg-blue-500 rounded-xl text-white p-2 mx-2 mt-2 cursor-pointer"
+          onClick={copyMessage}
+          disabled={text.length === 0}
+        >
+          Copy Text
         </button>
         <button
           type="button"
           className="bg-blue-500 rounded-xl text-white p-2 mx-2 mt-2 cursor-pointer"
           onClick={revertChanges}
-          disabled={history.length === 0}
+          disabled={text.length === 0}
         >
           Reverse the Change
         </button>
