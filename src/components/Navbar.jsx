@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Navbar = (props) => {
 
@@ -16,10 +17,10 @@ const Navbar = (props) => {
                 {props.dark?"Light Mode": "Dark Mode"}
                 </button>
                 <li className='list-none inline-block mx-3 items-center text-xl'>
-                    <a href="/">Home</a>
+                    <Link to="/">Home</Link>
                 </li>
                 <li className='list-none inline-block mx-2 text-xl'>
-                    <a href="/">About</a>
+                    <Link to="/">About</Link>
                 </li>
             </div>
         </nav>

@@ -8,23 +8,25 @@ import{
   Routes,
   Route,
   Link
-} from "react-router-dom"
+} from "react-router-dom";
 
 function App() {
 
   const [isDark, setDark] = useState(false)
 
   return (
-    <>
     <Router>
-      <Route path='/'>
-        <Navbar name='PLAYwTEXT' dark={isDark} toggleDark={setDark}/>
-      </Route>
-      <Route path='/'>
-        <Textbox dark={isDark}/>
-      </Route>  
+      <Routes>
+      <Route path="/"
+        element={
+          <>
+          <Navbar name='PLAYwTEXT' dark={isDark} toggleDark={setDark}/>
+          <Textbox dark={isDark}/>
+          </>
+        }
+      />
+      </Routes>  
     </Router>
-    </>
   )
 }
 
